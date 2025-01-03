@@ -18,6 +18,6 @@ I started having electronics as a hobby about six years ago so  I'm used to mode
   Last but not least, before you can start measuring the resistance, you must disconnect the meter to open-circuit and use the nob labeled ←Ω→ to adjust the needle to the ∞ symbol on the scale. **TODO**
 - Every voltage measurement range comes with a different internal resistance. I'm used to multimeters having 10 MΩ impedance, so having just 1 MΩ in the 10 V range seems pretty low to me. You need to think about what resistors are in your circuit before you attach a meter with just 1 MΩ.
   The 100 V range has higher internal resistance (10 MΩ) than the 600 V range (6 MΩ) because they couldn't go higher than 10 MΩ and needed a resistor value divisible by 6.
-  
+- ![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/internal_resistance.png)
 - The scale for resistance measurement is logarithmic, so it covers a pretty big range, but you can't get precise readings on the high end of the range.
 
