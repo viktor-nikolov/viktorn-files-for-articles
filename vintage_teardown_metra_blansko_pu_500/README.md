@@ -17,8 +17,10 @@ I started having electronics as a hobby about six years ago so  I'm used to mode
   After you turn it on, you must zero the needle electrically by turning the nob labeled ←0→ (it's the R41, which is connected to the offset voltage null pins of the OpAmp). When resistance measurement is selected, you must short the inputs to be able to do this adjustment.
   Last but not least, before you can start measuring a resistance, you must disconnect the meter to open-circuit and use the nob labeled ←Ω→ to adjust the needle to the ∞ symbol on the scale (it's the R45, which you adjust because the battery's voltage changes over time and there is no voltage regulator on the power rail).
 - Every voltage measurement range comes with a different internal resistance. I'm used to multimeters having 10 MΩ impedance, so having just 1 MΩ in the 10 V range seems pretty low to me. You need to think about what resistors are in your circuit before you attach a meter of just 1 MΩ.
-  The 100 V range has higher internal resistance (10 MΩ) than the 600 V range (6 MΩ). Apparently, they couldn't go higher than 10 MΩ and needed a resistor value divisible by 6.
-  ![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/internal_resistance.png)
+  The 100 V range has higher internal resistance (10 MΩ) than the 600 V range (6 MΩ). Apparently, they couldn't go higher than 10 MΩ and needed a resistor value divisible by 6.  
+  
+  <img src="https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/internal_resistance.png"  width="400">
+  
 - You connect everything to the two terminals, including lower current measurements. Only 1 A and 10 A ranges have a separate terminal.
   This was a trap for me during testing because I didn't expect I needed to connect the current to the same terminal used for voltage, so my initial "test result" was that 100 mA range measurement doesn't work.
 - The only protection is 1 A glass fuse on the main input terminal (you are supposed to connect max 100 mA there).
