@@ -29,9 +29,9 @@ I started having electronics as a hobby about six years ago so  I'm used to mode
   There is no protection whatsoever on the 1 A/10 A input terminal! I measured the internal resistance on this input as 37 mΩ so if you by mistake connect the leads to the mains socket, you better have good mains circuit breakers.
   The input pin of the OpAmp is protected against overvoltage by two diodes (D2, D3).
 - The scale for resistance measurement is logarithmic, so it covers a pretty big range, but you can't get precise readings on the high end of the range.
-- The user guide contains schematics and detailed BOM but doesn't describe the calibration procedure. 
+- The user guide contains schematics and detailed BOM but doesn't describe the calibration procedure (and there are a lot of trimming pots). 
 
-Here is the schematics that came with my specimen. It slightly differs from the schematics of the [export variant](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/vintage_teardown_metra_blansko_pu_500/metrablansko_pu500_qu500_multimeter_manual.pdf). My variant uses two transistors to generate positive and negative power rails. The export variant uses an OpAmp for this.
+Here is the schematics that came with my specimen. It slightly differs from the schematics of the [export variant](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/vintage_teardown_metra_blansko_pu_500/metrablansko_pu500_qu500_multimeter_manual.pdf). My variant uses two transistors to generate positive and negative power rails. The export variant uses an OpAmp for that.
 
 <img src="https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/Metra_Blansko_PU_500_schematics.png"  width="310">
 
@@ -39,8 +39,18 @@ Here is the schematics that came with my specimen. It slightly differs from the 
 
 I guess the circuit design was motivated by the usage of the least number of semiconductors possible.
 
-There is a single OpAmp (Tesla MAA 725K), which seems to be a communist copy of Fairchild µA725.
+The heart of the device is a single OpAmp (Tesla MAA 725K), which seems to be a communist copy of Fairchild µA725.
+Then there are four diodes, two transistors (for generating ± power rails), and five capacitors (all ceramic). And then there are a lot of resistors.
+
+My understanding is that the principle of the operation is to generate an appropriate amount of current in the coil of the movement. The coil is part of the resistor network connecting the OpAmp output and the inverting input. The rotating knob connects different impedances into this circuit to set five different amplification gains (for AC high ranges, AC low ranges, DC high ranges, DC low ranges, and resistance ranges).
+The difference between AC and DC measurements is that for AC, the OpAmp output is rectified by a diode, and a different gain is used. The mechanical inertia of the movement does the "averaging". This is absolutely not true-RMS. The circuit is calibrated for a 50 Hz sine wave.
 
 Declared precision is ±2.5% of the scale.
+The device draws 2 mA from the 9 V battery.
+
+I'm not a vintage equipment collector.
+**I offer this device for sale (or a donation to a museum).** It needs to be calibrated, but otherwise, it's in very good condition and fully functional (see photos [1](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/measurement_mains.jpg), [2](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/measurement_resistance.jpg), [3](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/measurement_current.jpg)).
+
+
 
 TODO: OpAmp can be still bought
