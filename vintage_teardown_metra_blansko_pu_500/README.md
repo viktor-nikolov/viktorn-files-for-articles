@@ -49,8 +49,8 @@ Declared precision is ±2.5% of the scale.
 The device draws 2 mA from the 9 V battery.
 
 I'm not a vintage equipment collector.
-**I offer this device for sale (or a donation to a museum).** It needs to be calibrated, but otherwise, it's in very good condition and fully functional (see photos [1](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/measurement_mains.jpg), [2](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/measurement_resistance.jpg), [3](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/measurement_current.jpg)).
+**I offer this device for sale (or a donation to a museum).** It needs to be calibrated, but otherwise, it's in very good condition and fully functional (see photos [1](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/measurement_mains.jpg), [2](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/measurement_resistance.jpg), [3](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/measurement_current.jpg)). It comes with an original user guide in the Czech language.
 
+![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/front.jpg)
 
-
-TODO: OpAmp can be still bought
+![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/back.jpg)
