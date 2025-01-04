@@ -54,3 +54,21 @@ I'm not a vintage equipment collector.
 ![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/front.jpg)
 
 ![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/back.jpg)
+
+Notice the winded resistor in the bottom left corner. A piece of cable on a spool. That's the R13 of 0.9 Ω. It is bang on. My recently calibrated 6½ digit multimeter measured 0.8993 Ω.
+
+![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/pcb_top1.jpg)
+
+![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/pcb_top2.jpg)
+
+![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/pcb_top3.jpg)
+
+The metal sheet on the right is not a shield. My understanding is that this is a current shunt for 1 A/10 A measurement (R15 of 0.01 Ω in the schematics).
+
+![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/pcb_bottom.jpg)
+
+The carrying case has a detachable cover and can be used as a stand or for protecting the device when used in the field.
+
+![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/case1.jpg)
+
+![](https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/case2.jpg)
