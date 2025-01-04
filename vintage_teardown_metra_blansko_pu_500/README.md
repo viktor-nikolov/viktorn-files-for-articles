@@ -10,7 +10,7 @@ I couldn't find any historical information online. My guess is that the design i
 
 The device was exported to the capitalist West. I know because I found an Anglo-German user guide for PU 500 on [ElektroTanya](https://elektrotanya.com/). I re-uploaded it [here](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/vintage_teardown_metra_blansko_pu_500/metrablansko_pu500_qu500_multimeter_manual.pdf). I guess the production ended in the early 90s (the communist rule in Czechoslovakia ended in November 1989, and Metra Blansko started to face fierce competition on the open market).
 
-I started having electronics as a hobby about six years ago so  I'm used to modern equipment. Therefore, I find the following quirks of this device amusing:
+I started having electronics as a hobby about six years ago, so  I'm used to modern equipment. Therefore, I find the following quirks of this device amusing:
 
 - You have to fiddle with it almost before every use.  
   Before turning it on, you zero the needle mechanically by a screw on the movement.  
@@ -40,10 +40,10 @@ I guess the circuit design was motivated by the usage of the least number of sem
 The heart of the device is a single OpAmp (Tesla MAA 725K), which seems to be a communist copy of Fairchild µA725.  
 Then there are four diodes, two transistors (for generating ± power rails), and five capacitors (all ceramic). And then there are a lot of resistors.
 
-My understanding is that the principle of the operation is to generate an appropriate amount of current in the coil of the movement. The coil is part of the resistor network connecting the OpAmp output and the inverting input. The rotating knob connects different impedances into this circuit to set five different amplification gains (for AC high ranges, AC low ranges, DC high ranges, DC low ranges, and resistance ranges).
+My understanding is that the principle of the operation is to generate an appropriate amount of current in the coil of the movement. The coil is part of the resistor network connecting the OpAmp output and the inverting input. The rotating knob connects different impedances into this circuit to set five different amplification gains (for AC high ranges, AC low ranges, DC high ranges, DC low ranges, and resistance ranges).  
 The difference between AC and DC measurements is that for AC, the OpAmp output is rectified by a diode, and a different gain is used. The mechanical inertia of the movement does the "averaging". This is absolutely not true-RMS. The circuit is calibrated for a 50 Hz sine wave.
 
-Declared precision is ±2.5% of the scale.
+Declared precision is ±2.5% of the scale.  
 The device draws 2 mA from the 9 V battery.
 
 I'm not a vintage equipment collector.
