@@ -1,5 +1,3 @@
-**THIS IS UNDER CONSTRUCTION**
-
 # Vintage Teardown: Metra Blansko PU 500
 
 The [EEVblog Forum](https://www.eevblog.com/forum/index.php) is full of high-precision sophisticated devices. But what about a low-end analog multimeter made in communist Czechoslovakia? Was it any good?
