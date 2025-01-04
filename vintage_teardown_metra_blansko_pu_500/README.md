@@ -6,6 +6,8 @@ The [EEVblog Forum](https://www.eevblog.com/forum/index.php) is full of high-pre
 
 I recently found the PU 500 multimeter in the basement. My father gave it to me sometime in the mid-80s, but I didn't really use it. I wasn't into electronics as a teenager.
 
+<img src="https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/front.jpg"  width="200">
+
 I couldn't find any historical information online. My guess is that the design is from the late 70s or early 80s. It was produced by [Metra Blansko](https://www.metra.cz/en/) (based in the city of [Blansko](https://www.google.com/maps/place/METRA+BLANSKO+Ltd./@49.3718684,16.6425585,17z/data=!4m6!3m5!1s0x47128ebc6196a643:0x7ed6da70ecb49804!8m2!3d49.3715615!4d16.6449085!16s%2Fg%2F1tk4pwr3?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D)), which had, at that time, a monopoly on manufacturing measurement devices in Czechoslovakia. The company still exists, and they [produce analog meters](https://www.metra.cz/en/products/digital-panel-and-switchboard-instruments/) to this day. 
 
 The device was exported to the capitalist West. I know because I found an Anglo-German user guide for PU 500 on [ElektroTanya](https://elektrotanya.com/). I re-uploaded it [here](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/vintage_teardown_metra_blansko_pu_500/metrablansko_pu500_qu500_multimeter_manual.pdf). I guess the production ended in the early 90s (the communist rule in Czechoslovakia ended in November 1989).
@@ -27,9 +29,18 @@ I started having electronics as a hobby about six years ago so  I'm used to mode
   There is no protection whatsoever on the 1 A/10 A input terminal! I measured the internal resistance on this input as 37 mΩ so if you by mistake connect the leads to the mains socket, you better have good mains circuit breakers.
   The input pin of the OpAmp is protected against overvoltage by two diodes (D2, D3).
 - The scale for resistance measurement is logarithmic, so it covers a pretty big range, but you can't get precise readings on the high end of the range.
+- The user guide contains schematics and detailed BOM but doesn't describe the calibration procedure. 
+
+Here is the schematics that came with my specimen. It slightly differs from the schematics of the [export variant](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/vintage_teardown_metra_blansko_pu_500/metrablansko_pu500_qu500_multimeter_manual.pdf). My variant uses two transistors to generate positive and negative power rails. The export variant uses an OpAmp for this.
 
 <img src="https://raw.githubusercontent.com/viktor-nikolov/viktorn-files-for-articles/refs/heads/main/vintage_teardown_metra_blansko_pu_500/Metra_Blansko_PU_500_schematics.png"  width="310">
 
+  
 
+I guess the circuit design was motivated by the usage of the least number of semiconductors possible.
+
+There is a single OpAmp (Tesla MAA 725K), which seems to be a communist copy of Fairchild µA725.
+
+Declared precision is ±2.5% of the scale.
 
 TODO: OpAmp can be still bought
