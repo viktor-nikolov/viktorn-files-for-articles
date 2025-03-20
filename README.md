@@ -9,3 +9,4 @@ This repository is a storage of files shared in various forum posts and articles
 
 [My protection circuit acts as an oscillator - Electrical Engineering Stack Exchange](https://electronics.stackexchange.com/questions/740722/my-protection-circuit-acts-as-an-oscillator)
 
+[Keysight 34465A or 34470A DMM fast digitization - File Exchange - MATLAB Central](https://www.mathworks.com/matlabcentral/fileexchange/180461-keysight-34465a-or-34470a-dmm-fast-digitization)
