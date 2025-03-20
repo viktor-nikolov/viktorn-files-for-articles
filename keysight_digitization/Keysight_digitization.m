@@ -10,7 +10,7 @@
 % but the commands setting aperture duration and sampling speed must be modified to match the
 % performance of these slower instruments.
 %
-% Copyright (c) 2024 Viktor Nikolov
+% Copyright (c) 2025 Viktor Nikolov
 
 clear; % Clear workspace
 
