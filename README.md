@@ -14,3 +14,5 @@ This repository is a storage of files shared in various forum posts and articles
 [Aim-TTi TGF4162/TGF4242 arbitrary waveform upload - File Exchange - MATLAB Central](https://www.mathworks.com/matlabcentral/fileexchange/180529-aim-tti-tgf4162-tgf4242-arbitrary-waveform-upload)
 
 [Rohde & Schwarz oscilloscope waveform - File Exchange - MATLAB Central](https://www.mathworks.com/matlabcentral/fileexchange/180588-rohde-schwarz-oscilloscope-waveform)
+
+[AD7476 breakout board ("unbuffered Pmod AD1") - Project Vault - Digilent Forum](https://forum.digilent.com/topic/31513-ad7476-breakout-board-unbuffered-pmod-ad1/)
