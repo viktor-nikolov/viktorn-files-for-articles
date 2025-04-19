@@ -11,14 +11,14 @@ If required, you need to add the tlast signal downstream.
 
 The input signal second_adc_enabled controls whether data from the second ADC (connected to sdata1 input signal)
 are provided in the AXI-Stream.
-When second_adc_enabled is asserted, the module first outputs on the AXI-Stream interface data sample read from ADC 0,
-then waits for three clock cycles and outputs the data sample from ADC 1.
-On data samples from ADC 1, the module sets the most significant bit to 1. This allows a consumer of the AXI-Stream
-to distinguish between ADC 0 and ADC 1 data. The AD7476A provides 12-bit values. So, the ADC does not use the MSB.
+When second_adc_enabled is asserted, the module first outputs on the AXI-Stream interface data sample read from ADC0,
+then waits for three clock cycles and outputs the data sample from ADC1.
+On data samples from ADC1, the module sets the most significant bit to 1. This allows a consumer of the AXI-Stream
+to distinguish between ADC0 and ADC1 data. The AD7476A provides 12-bit values. So, the ADC does not use the MSB.
 
 You must specify two module's parameters:
-   - CLK_FREQ is the input clk frequency in Hz. We prefer a frequency that is an even multiple of 20 MHz
-     (this allows for a symmetrical SPI SCLK generation).
+   - CLK_FREQ is the input clk frequency in Hz. I highly recommend a frequency that is an even multiple of 20 MHz
+     (this allows for a symmetrical SPI 20 MHz SCLK generation).
 
    - SPI_CLK_DELAY_CYCLES sets a number of clk clock cycles between SPI CS going down and SPI SCLK starting.
      Set the number appropriately to fulfill the AD7476A requirement for a minimum 10 ns CS to SCLK setup time.
@@ -62,8 +62,8 @@ module adc_spi_axis #(
     // SPI interface
     output reg         cs,          // active-low chip select
     output reg         sclk,        // SPI clock (20 MHz)
-    input  wire        sdata0,      // SPI serial data input from ADC 0
-    input  wire        sdata1,      // SPI serial data input from ADC 1
+    input  wire        sdata0,      // SPI serial data input from ADC0
+    input  wire        sdata1,      // SPI serial data input from ADC1
     // AXI-stream interface
     output reg [15:0]  m_axis_tdata,
     output reg         m_axis_tvalid,
@@ -78,20 +78,22 @@ module adc_spi_axis #(
     localparam SCLK_HALF_DOWN = SCLK_PERIOD_CYCLES / 2;
 
     // State machine states
-    localparam STATE_IDLE          = 2'd0,
-               STATE_SPI_DELAY     = 3'd1,
-               STATE_TRANSFER      = 3'd2,
-               STATE_OUTPUT_0      = 3'd3,
-               STATE_OUTPUT_1_WAIT = 3'd4,
-               STATE_OUTPUT_1      = 3'd5;
+    localparam STATE_IDLE                  = 4'd0,
+               STATE_SPI_DELAY             = 4'd1,
+               STATE_TRANSFER              = 4'd2,
+               STATE_OUTPUT_0              = 4'd3,
+               STATE_OUTPUT_0_AWAIT_TREADY = 4'd4,
+               STATE_WAIT_FOR_OUTPUT_1     = 4'd5,
+               STATE_OUTPUT_1              = 4'd6,
+               STATE_OUTPUT_1_AWAIT_TREADY = 4'd7;
 
-    reg [2:0] state = STATE_IDLE;
+    reg [3:0] state = STATE_IDLE;
 
     // Counters
     reg [$clog2(SAMPLE_PERIOD):0] sample_counter = 0;
     reg [$clog2(SPI_CLK_DELAY_CYCLES):0] spi_delay_counter = 0;
     reg [4:0] bit_counter = 0;  // counts 0 to 16 (needs 5 bits)
-    reg [4:0] wait_counter = 0; // waiting counter for ADC 1 data output on AXI-Stream interface
+    reg [4:0] wait_counter = 0; // waiting counter for ADC1 data output on AXI-Stream interface
 
     // Shift registers for captured data.
     reg [15:0] data_reg0 = 16'd0;
@@ -192,23 +194,30 @@ module adc_spi_axis #(
                 end
 
                 STATE_OUTPUT_0: begin
-                    // Output data from ADC 0 on the AXI-Stream interface
+                    // Output data from ADC0 on the AXI-Stream interface
                     cs <= 1; // deassert CS after transfer
                     m_axis_tdata <= data_reg0;
                     m_axis_tvalid <= 1;
+                    
+                    /* We can't check for the AXI-Stream handshake from downstream (assertion
+                       of the m_axis_tready) right away, because it could be deasserted in the
+                       current clock cycle. We, therefore, enter the state awaiting for m_axis_tready */ 
+                    state <= STATE_OUTPUT_0_AWAIT_TREADY;                   
+                end
+
+                STATE_OUTPUT_0_AWAIT_TREADY: begin
                     // Wait for handshake from downstream (AXI-Stream tready)
                     if (m_axis_tready) begin
-                        // m_axis_tvalid will be set low next clock cycle at the beginning of the next state
+                        m_axis_tvalid <= 0;
                         if( second_adc_enabled )
-                            state <= STATE_OUTPUT_1_WAIT;
+                            state <= STATE_WAIT_FOR_OUTPUT_1;
                         else
                             state <= STATE_IDLE;
                     end
                 end
 
-                STATE_OUTPUT_1_WAIT: begin
-                    // Wait three clock cycles before output of data from ADC 1 on the AXI-Stream interface
-                    m_axis_tvalid <= 0;
+                STATE_WAIT_FOR_OUTPUT_1: begin
+                    // Wait three clock cycles before output of data from ADC1 on the AXI-Stream interface
                     if( wait_counter < 3 )
                         wait_counter <= wait_counter + 1;
                     else begin
@@ -218,14 +227,18 @@ module adc_spi_axis #(
                 end
 
                 STATE_OUTPUT_1: begin
-                    // Output data from ADC 1 on the AXI-Stream interface
-                    /* By setting the most significant bit we indicate that the data sample is from ADC 1.
+                    // Output data from ADC1 on the AXI-Stream interface
+                    /* By setting the most significant bit we indicate that the data sample is from ADC1.
                        The AD7476A provides 12-bit values. So the MSB is not used by the ADC. */
                     m_axis_tdata <= 16'h8000 | data_reg1;
                     m_axis_tvalid <= 1;
-                    // Wait for handshake from downstream (AXI tready)
+                    state <= STATE_OUTPUT_1_AWAIT_TREADY;
+                end
+
+                STATE_OUTPUT_1_AWAIT_TREADY: begin
+                    // Wait for handshake from downstream (AXI-Stream tready)
                     if (m_axis_tready) begin
-                        // m_axis_tvalid will be set low next clock cycle at the beginning of the next state
+                        m_axis_tvalid <= 0;
                         state <= STATE_IDLE;
                     end
                 end
