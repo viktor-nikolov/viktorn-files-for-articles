@@ -65,6 +65,7 @@ Pressing button BTN1 activates or deactivates the second ADC on Pmod AD1 (analog
 >
 > If you are using MATLAB and have a license for the Instrument Control Toolbox, you can use a MATLAB script [AD7476_visualiser_MATLAB.m](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/AD7476_breakout_board/sample_project/AD7476_visualiser_MATLAB.m) instead of the Python script [AD7476_visualiser.py](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/AD7476_breakout_board/sample_project/AD7476_visualiser.py).
 
+&nbsp;  
 **Diagram of the HW design in Vivado:**
 ![](vivado_diagram.png)
 
