@@ -56,7 +56,7 @@ press BTN1 to turn on or off the second ADC
 second ADC is disabled
 ```
 
-When you press the button BTN0 on Zybo Z7, data samples are read from the ADC and sent to the PC, which displays data in the chart. See a sample output of [AD7476_visualiser.py](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/AD7476_breakout_board/sample_project/AD7476_visualiser.py) shown below.  
+When you press the button BTN0 on Zybo Z7, data samples are read from the ADC and sent to the PC, which displays data in the chart. See a sample output of the [AD7476_visualiser.py](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/AD7476_breakout_board/sample_project/AD7476_visualiser.py) shown below.  
 Please note that on my Windows PC, when running the script for the command line, I need to close the chart window before I can process the next set of data coming from Zybo Z7.
 
 Pressing button BTN1 activates or deactivates the second ADC on Pmod AD1 (analog input A1).
