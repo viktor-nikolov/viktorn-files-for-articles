@@ -25,17 +25,14 @@ import socket
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
-import signal
 from select import select
+import threading
+import queue
 
 ADCVREF = 3.3 # The ADC reference voltage, adjust this based on the voltage in your circuit.
               # uint16 ADC sample of value zero is translated to 0 Volts, and a sample
               # of value 0xFFF is translated to ADCVREF Volts.
 
-def signal_handler(signum, frame):
-    # Handler for Ctlr+C signal
-    print("\nExecution interrupted by the user. Exiting...")
-    exit(1)
 
 def space_separator(num):
     # Format integer with spaces as a thousand separator
@@ -56,8 +53,16 @@ def process_data(data_bytes, ADCVREF):
     data0 = ADCVREF * data0.astype(np.float64) / 0xFFF
     data1 = ADCVREF * data1.astype(np.float64) / 0xFFF
 
-    # Plot
-    fig, ax = plt.subplots(figsize=(11.5, 7))
+    # Get an existing figure or create a new one
+    if plt.get_fignums():
+        # If there's an existing figure, clear it and get its axes
+        plt.clf()
+        ax = plt.gca()
+    else:
+        # Create a new figure if none exists
+        fig, ax = plt.subplots(figsize=(11.5, 7))
+
+    # Plot data
     times0 = np.arange(data0.size) * 0.001  # Time axis is in ms (we assume a 1 Msps sampling)
     ax.plot(times0, data0, marker='.', markersize=2, linestyle='None', label='ADC0')
     if data1.size > 0:
@@ -87,23 +92,22 @@ def process_data(data_bytes, ADCVREF):
         print(f"Max  Value ADC1: {data1.max():.5f} V")
         print(f"Min  Value ADC1: {data1.min():.5f} V")
 
-    plt.show()
+    plt.show(block=False) # Show the figure without blocking
+    plt.pause(0.01) # Process GUI events
 
 
-def main():
-    HOST = '0.0.0.0' # Binding IP address, 0.0.0.0 means all available interfaces
-    PORT = 65432     # Listening port
-
-    signal.signal(signal.SIGINT, signal_handler)  # Set handling of Ctrl+C
+def server_thread_func(host, port, q):
+    # This is a thread that listens on (host, port) for incoming data
+    # It will push received data into the queue.
 
     # Create a TCP / IP server socket
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # Set the IP socket server
         # Setting SO_REUSEADDR allows us to reuse the same port number immediately after closing the socket
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        s.bind((HOST, PORT))
+        s.bind((host, port))
         s.listen(1) # Put the socket into listening mode
-        print(f"Listening for data at {HOST}:{PORT}")
+        print(f"Listening for data at {host}:{port}")
         print("Press Ctrl+C to exit")
 
         while True:  # The outer cycle is for each socket connection, i.e., for each incoming ADC data set
@@ -128,7 +132,30 @@ def main():
             print(f"    Received data samples: {space_separator( int( len(data_bytes)/2 ) )}")
 
             if data_bytes:
+                q.put(data_bytes)
+
+def main():
+    HOST = '0.0.0.0' # Binding IP address, 0.0.0.0 means all available interfaces
+    PORT = 65432     # Listening port
+
+    # We need to call pyplot.pause() frequently to give control to the GUI to process events. Otherwise,
+    # the widow with the figure would freeze. Therefore, we run the loop, which checks for data coming
+    # to the socket server in a separate thread, and we communicate with it via a queue.
+    data_queue = queue.Queue()
+    # Start the server thread
+    server_thread = threading.Thread(target=server_thread_func, args=(HOST, PORT, data_queue), daemon=True)
+    server_thread.start()
+
+    try:
+        while True:
+            try:
+                data_bytes = data_queue.get(timeout=0.010)  # wait up to 10 ms
                 process_data(data_bytes, ADCVREF)
+            except queue.Empty:
+                # no data right now, give the GUI a chance to update
+                plt.pause(0.005)
+    except KeyboardInterrupt:
+        print("\nExecution interrupted by the user. Exiting...")
 
 
 if __name__ == '__main__':
