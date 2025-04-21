@@ -11,6 +11,8 @@ Powering the ADC from a voltage reference increases the accuracy. In some of my 
 
 For use on an FPGA, I created [a Verilog module](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/AD7476_breakout_board/adc_spi_axis.v) (compatible with Pmod AD1, my board, or any other circuit using AD7476/AD7476A). This module reads data from the ADCs at a maximum supported sampling rate of 1 Msps and outputs an AXI-Stream.
 
+- I included here a [sample project](sample_project) that digitizes one or two analog inputs using Zybo Z7-20 and Pmod AD1 (or my AD7476 breakout board). A FreeRTOS app running on Zybo Z7 sends data samples in binary form over the network to a PC, where a [Python script](sample_project/AD7476_visualiser.py) is running. The script decodes the data and displays it in the chart. More details about the project are explained [in this readme](sample_project).
+
 I successfully tested my breakout board on Zybo Z7 and Arduino Uno (yes, it works with a 5V microcontroller).
 
 I published KiCad 9.0 [design files](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/AD7476_breakout_board/AD7476_Pmod_Rev1.1_KiCad_archive.zip) in my repository, which are ready for manufacture (including assembly) at JLCPCB using the JLCPCB [Fabrication Toolkit](https://github.com/bennymeg/Fabrication-Toolkit) KiCad plugin.
