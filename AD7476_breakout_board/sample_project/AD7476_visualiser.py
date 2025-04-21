@@ -10,7 +10,7 @@ from the second ADC (ADC1).
 ****** IMPORTANT: ******
 Set the value of the constant ADCVREF (at the beginning of the script) according to the reference voltage
 of the ADC in your circuit.
-uint16 ADC sample of value zero is translated to 0 Volts, and a sample of value 0xFFF is translated to ADCVref Volts.
+uint16 ADC sample of value zero is translated to 0 Volts, and a sample of value 0xFFF is translated to ADCVREF Volts.
 
 This script was created for use with the Zynq-7000 FPGA project utilizing AD7476A ADC (Digilent Pmod AD1).
 
