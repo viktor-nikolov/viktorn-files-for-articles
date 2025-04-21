@@ -3,10 +3,10 @@
 This folder contains a sample project that shows how a Zynq-7000 board can read data from one or two ADCs and send them in binary form to a remote PC for processing and visualisation.
 
 I developed and tested the project on the Digilent [Zybo Z7-20](https://digilent.com/reference/programmable-logic/zybo-z7/start) board using the Digilent [Pmod AD1](https://digilent.com/reference/pmod/pmodad1/start).  
-In this project, I used many of the principles I described in the HW design and the SW app of my [Zynq XADC Tutorial](https://github.com/viktor-nikolov/Zynq-XADC-DMA-lwIP). However, this time the ADC data are not produced by XADC but by the module [adc_spi_axis.v,](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/AD7476_breakout_board/adc_spi_axis.v) which reads them from [AD7476A](https://www.analog.com/en/products/ad7476a.html) on the Pmod AD1.
+In this project, I used many of the principles I described in the HW design and the SW app of my [Zynq XADC Tutorial](https://github.com/viktor-nikolov/Zynq-XADC-DMA-lwIP). However, this time the ADC data are not produced by Zynq XADC but by the module [adc_spi_axis.v,](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/AD7476_breakout_board/adc_spi_axis.v) which reads them from [AD7476A](https://www.analog.com/en/products/ad7476a.html) on the Pmod AD1.
 
 [AD7476_DMA_test_hw.xpr.zip](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/AD7476_breakout_board/sample_project/AD7476_DMA_test_hw.xpr.zip) is a Zybo Z7-20 HW design project exported from Vivado 2024.1.1.  
-The design assumes that you connect the Digilent Pmod AD1 to the upper pins (i.e., pins 1 to 6) of the **Pmod JE** socket on the Zybo Z7.
+The design assumes that you connect the Digilent Pmod AD1 to the upper pins (i.e., pins 1 to 6) of the Pmod JE socket on the Zybo Z7.
 
 > [!CAUTION]
 >
@@ -16,7 +16,7 @@ The design assumes that you connect the Digilent Pmod AD1 to the upper pins (i.e
 [AD7476_DMA_vitis_export_archive.ide.zip](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/AD7476_breakout_board/sample_project/AD7476_DMA_vitis_export_archive.ide.zip) is a FreeRTOS application project exported from Vitis Classic 2024.1.1.  The application source files included in the archive can also be compiled in Vitis Unified 2024.
 
 The application running on Zybo Z7 sends ADC data samples over the network to a socket server, which is the Python script [AD7476_visualiser.py](https://github.com/viktor-nikolov/viktorn-files-for-articles/blob/main/AD7476_breakout_board/sample_project/AD7476_visualiser.py).  
-You must specify the IP address of the server in the constant in main.cpp. It is this line at the beginning of the main.cpp:
+You must specify the IP address of the server in the constant in main.cpp of the application. It is this line at the beginning of the main.cpp:
 
 ```c++
 const std::string SERVER_ADDR( "192.168.44.10" ); // Specify your actual server IP address
