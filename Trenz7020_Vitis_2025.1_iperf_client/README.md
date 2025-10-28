@@ -1,5 +1,7 @@
 # Trenz 7020-2I SoC module FreeRTOS lwIP iperf client (Vitis 2025.1)
 
+(This relates to the following Trenz Electronic Support Forum post: [Does TE0720 Ethernet work in Vitis 2025.1?](https://forum.trenz-electronic.de/index.php/topic,2869.0.html))
+
 The file [archive_Trenz7020-2I_RTOS_iperf_client.zip](archive_Trenz7020-2I_RTOS_iperf_client.zip) is a project export from Vitis 2025.1, which contains a FreeRTOS lwIP iperf client built for the Trenz AMD Zynq SoC module 7020-2I.  
 I tested it with my [TE0720-04-62I33MA](https://www.trenz-electronic.de/en/SoC-Module-with-AMD-Zynq-7020-2I-1-GByte-DDR3L-8-GByte-eMMC-4-x-5-cm/TE0720-04-62I33MA) with the carrier board [TE0705](https://www.trenz-electronic.de/en/TE0705-Simplified-carrier-board-based-upon-TE0701/TE0705-04). I achieved an average transfer speed of 566 Mbits/sec.
 
