@@ -16,3 +16,5 @@ This repository is a storage of files shared in various forum posts and articles
 [Rohde & Schwarz oscilloscope waveform - File Exchange - MATLAB Central](https://www.mathworks.com/matlabcentral/fileexchange/180588-rohde-schwarz-oscilloscope-waveform)
 
 [AD7476 breakout board ("unbuffered Pmod AD1") - Project Vault - Digilent Forum](https://forum.digilent.com/topic/31513-ad7476-breakout-board-unbuffered-pmod-ad1/)
+
+[Does TE0720 Ethernet work in Vitis 2025.1? - Trenz Electronic Support Forum](https://forum.trenz-electronic.de/index.php/topic,2869.0.html)
