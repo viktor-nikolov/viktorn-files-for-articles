@@ -8,7 +8,7 @@ I tested these projects with my [TE0720-04-62I33MA](https://www.trenz-electronic
 
 > [!NOTE]
 >
-> Please note that I created this Vitis 2025.1 project export on Windows, and it is, unfortunately, not usable on Linux. This is because Vitis stores names of build executables in the BSP configuration. Linux executables differ from those on Windows. Generally, Vitis exports are not compatible across different operating systems.
+> Please note that I created these Vitis 2025.1 project exports on Windows, and they are, unfortunately, not usable on Linux. This is because Vitis stores names of build executables in the BSP configuration. Linux executables differ from those on Windows. Generally, Vitis 2025.1 exports are not compatible across different operating systems.
 
 The version of FreeRTOS iperf client shared here is improved, because I fixed a performance bug present in the original AMD example.  
 In the original code, `xemacif_input_thread` is set to run with the default thread priority. Therefore, there is a bottleneck in the handling of incoming packets. The priority must be set to `TCPIP_THREAD_PRIO`, which is the priority of the main lwIP `tcpip_thread` (see tcpip.c in the lwIP BSP source files).
