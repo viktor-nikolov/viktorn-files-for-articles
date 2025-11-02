@@ -1,4 +1,4 @@
-# Trenz 7020-2I SoC module FreeRTOS lwIP iperf client (Vitis 2025.1)
+# Trenz 7020-2I SoC module lwIP iperf client (Vitis 2025.1)
 
 This relates to the following Trenz Electronic Support Forum post: [Does TE0720 Ethernet work in Vitis 2025.1?](https://forum.trenz-electronic.de/index.php/topic,2869.0.html)
 
