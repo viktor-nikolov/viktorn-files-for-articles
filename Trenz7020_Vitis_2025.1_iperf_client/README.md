@@ -9,7 +9,7 @@ I tested these projects with my [TE0720-04-62I33MA](https://www.trenz-electronic
 > [!TIP]
 >
 > To run the iperf client example on the Zynq board, you need an iperf server. 🙂  
-> To run an iperf server on Windows, you need to download **iperf version 2** from [SourceForge](https://sourceforge.net/projects/iperf2/). The iperf offered for download at [Iperf.fr](https://iperf.fr/) is version 3, which is not compatible with AMD iperf Vitis examples.
+> To run an iperf server on Windows, you need to download **iperf version 2** from [SourceForge](https://sourceforge.net/projects/iperf2/). The iperf offered for download at [iPerf.fr](https://iperf.fr/) is version 3, which is not compatible with AMD iperf Vitis examples.
 
 > [!NOTE]
 >
